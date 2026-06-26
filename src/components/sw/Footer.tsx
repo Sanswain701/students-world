@@ -1,4 +1,4 @@
-import { BRAND, NAV } from "@/lib/sw-data";
+import { BRAND, NAV, waLink, WA_MESSAGES } from "@/lib/sw-data";
 
 export function Footer() {
   const services = ["Aadhaar Card", "PAN Card", "Govt Certificates", "Exam Forms", "Print & Scan", "GST Services"];
