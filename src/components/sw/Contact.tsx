@@ -103,7 +103,7 @@ export function Contact() {
                 rows={5}
                 className={`w-full bg-white/[0.04] rounded-xl px-4 py-3.5 text-white placeholder:text-white/40 outline-none border transition-all focus:border-[#00F0FF] focus:shadow-[0_0_0_3px_rgba(0,240,255,0.1)] resize-none ${errors.message ? "border-red-500/60 animate-pulse" : "border-white/10"}`}
               />
-              <button type="submit" className="btn-primary w-full">Send Message ✦</button>
+              <button type="submit" aria-label="Send message via WhatsApp" className="btn-primary w-full">💬 Send via WhatsApp →</button>
             </div>
           </form>
         </div>
