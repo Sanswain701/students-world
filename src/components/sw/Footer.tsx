@@ -19,7 +19,8 @@ export function Footer() {
             Government-approved digital services center in Konark, Odisha. Trusted since over a decade.
           </p>
           <div className="mt-5 flex gap-2.5">
-            <a href={`https://wa.me/${BRAND.whatsapp}`} target="_blank" rel="noreferrer"
+            <a href={waLink(WA_MESSAGES.general)} target="_blank" rel="noopener noreferrer"
+              aria-label="Chat with Students World on WhatsApp"
               className="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 hover:border-[#25D366] transition-all">💬</a>
             <a href={`tel:${BRAND.phoneRaw}`} className="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 hover:border-[#1A6DFF] transition-all">📞</a>
             <a href={`mailto:${BRAND.email}`} className="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 hover:border-[#00F0FF] transition-all">📧</a>
