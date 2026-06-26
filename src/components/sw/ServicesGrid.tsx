@@ -1,9 +1,9 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { SERVICES } from "@/lib/sw-data";
+import { SERVICES, waLink } from "@/lib/sw-data";
 
-function Card({ icon, title, desc, i }: { icon: string; title: string; desc: string; i: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+function Card({ icon, title, desc, wa, i }: { icon: string; title: string; desc: string; wa: string; i: number }) {
+  const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const rx = useSpring(useTransform(my, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 18 });
@@ -24,10 +24,14 @@ function Card({ icon, title, desc, i }: { icon: string; title: string; desc: str
       transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
       style={{ perspective: 1000 }}
     >
-      <motion.div
+      <motion.a
+        href={waLink(wa)}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Chat on WhatsApp about ${title}`}
         ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-        className="glass group relative rounded-3xl p-7 h-full overflow-hidden hover:border-[rgba(0,240,255,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(26,109,255,0.18)] transition-shadow duration-500"
+        className="glass group relative rounded-3xl p-7 h-full overflow-hidden block hover:border-[rgba(0,240,255,0.25)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.6),0_0_40px_rgba(26,109,255,0.18)] transition-shadow duration-500"
       >
         <div className="absolute -inset-px rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           style={{ background: "conic-gradient(from var(--angle, 0deg), #1A6DFF, #00F0FF, #7B61FF, #1A6DFF)", filter: "blur(14px)", zIndex: -1 }} />
@@ -38,9 +42,9 @@ function Card({ icon, title, desc, i }: { icon: string; title: string; desc: str
         <h3 className="font-display text-xl font-semibold text-white mb-2 tracking-tight">{title}</h3>
         <p className="text-white/60 text-[14px] leading-relaxed mb-6">{desc}</p>
         <div className="inline-flex items-center gap-1.5 text-[13px] font-medium text-[#00F0FF]">
-          Explore <span className="transition-transform group-hover:translate-x-1">→</span>
+          💬 Chat on WhatsApp <span className="transition-transform group-hover:translate-x-1">→</span>
         </div>
-      </motion.div>
+      </motion.a>
     </motion.div>
   );
 }

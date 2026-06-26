@@ -11,6 +11,22 @@ export const BRAND = {
   mapsUrl: "https://maps.google.com/?q=19.8926667,86.0878783",
 };
 
+/** Build a WhatsApp deep link with a pre-filled message for a service. */
+export const waLink = (message?: string) => {
+  const base = `https://wa.me/${BRAND.whatsapp}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+};
+
+export const WA_MESSAGES = {
+  general: "Hello Students World, I'd like to enquire about your services.",
+  aadhaar: "Hi Students World, I need help with Aadhaar Card services (new / update / correction). Please guide me.",
+  pan: "Hi Students World, I'd like to apply for a PAN Card. What documents do I need?",
+  certificate: "Hi Students World, I need help applying for a government certificate (Income / Residence / Caste / Birth). Please assist.",
+  examForm: "Hi Students World, I'd like to fill a government exam / scholarship form. Please guide me.",
+  digital: "Hi Students World, I need digital services (printing / scanning / online registration). Are you available now?",
+  apply: "Hi Students World, I'd like to apply for a service. Please share the next steps.",
+};
+
 export const NAV = [
   { id: "home", label: "Home" },
   { id: "services", label: "Services" },
@@ -56,15 +72,15 @@ export const STATS = [
 ];
 
 export const SERVICES = [
-  { icon: "🪪", title: "Identity Documents", desc: "Aadhaar Card updates, PAN Card applications, Voter ID registration and corrections processed with precision and speed." },
-  { icon: "📋", title: "Government Certificates", desc: "Income, Residence, Caste, Birth, and Death certificates — we manage the complete application, tracking, and follow-up process." },
-  { icon: "🎓", title: "Exam & Education", desc: "UPSC, SSC, Bank, Railway, Scholarship, and College Admission forms filled and submitted with zero errors, every time." },
-  { icon: "🚗", title: "Driving & Passport", desc: "Driving Licence applications, renewals, and Passport services handled end-to-end with correct documentation and fast turnaround." },
-  { icon: "💳", title: "Financial Services", desc: "Bank KYC, GST registration, utility bill payments, digital transactions, and online recharge — all under one roof." },
-  { icon: "🖨️", title: "Print, Scan & Copy", desc: "High-quality colour printing, black & white, scanning, photocopying, lamination, and passport-size photos available instantly." },
-  { icon: "📱", title: "Online Services", desc: "Online bookings, email setup, portal registrations, and digital form submissions handled by our experienced team." },
-  { icon: "💼", title: "Career & Employment", desc: "Professional resume creation, job portal registrations, employment form submissions, and career document preparation." },
-  { icon: "🤝", title: "Consultation & Support", desc: "Guidance on document requirements, process navigation, government portal help — in Odia, Hindi or English." },
+  { icon: "🪪", title: "Identity Documents", desc: "Aadhaar Card updates, PAN Card applications, Voter ID registration and corrections processed with precision and speed.", wa: "Hi Students World, I need help with Identity Documents (Aadhaar / PAN / Voter ID). Please guide me." },
+  { icon: "📋", title: "Government Certificates", desc: "Income, Residence, Caste, Birth, and Death certificates — we manage the complete application, tracking, and follow-up process.", wa: "Hi Students World, I'd like to apply for a Government Certificate (Income / Residence / Caste / Birth). Please assist." },
+  { icon: "🎓", title: "Exam & Education", desc: "UPSC, SSC, Bank, Railway, Scholarship, and College Admission forms filled and submitted with zero errors, every time.", wa: "Hi Students World, I'd like help filling a government exam / scholarship / admission form." },
+  { icon: "🚗", title: "Driving & Passport", desc: "Driving Licence applications, renewals, and Passport services handled end-to-end with correct documentation and fast turnaround.", wa: "Hi Students World, I need help with Driving Licence / Passport services. Please share next steps." },
+  { icon: "💳", title: "Financial Services", desc: "Bank KYC, GST registration, utility bill payments, digital transactions, and online recharge — all under one roof.", wa: "Hi Students World, I need help with Financial Services (Bank KYC / GST / bill payments)." },
+  { icon: "🖨️", title: "Print, Scan & Copy", desc: "High-quality colour printing, black & white, scanning, photocopying, lamination, and passport-size photos available instantly.", wa: "Hi Students World, I need Print / Scan / Photocopy / Lamination services. Are you available now?" },
+  { icon: "📱", title: "Online Services", desc: "Online bookings, email setup, portal registrations, and digital form submissions handled by our experienced team.", wa: "Hi Students World, I need help with Online Services (bookings / email / portal registrations)." },
+  { icon: "💼", title: "Career & Employment", desc: "Professional resume creation, job portal registrations, employment form submissions, and career document preparation.", wa: "Hi Students World, I need help with Career & Employment services (resume / job portals)." },
+  { icon: "🤝", title: "Consultation & Support", desc: "Guidance on document requirements, process navigation, government portal help — in Odia, Hindi or English.", wa: "Hi Students World, I'd like a consultation about a government / digital service." },
 ];
 
 export const WHEEL_ICONS = ["🪪","📋","🎓","🚗","💳","🖨️","📱","💼","🏦","🗳️","✈️","🧾"];

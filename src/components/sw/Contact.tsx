@@ -16,7 +16,7 @@ function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: 
         {icon}
       </span>
       <div className="min-w-0">
-        <div className="font-mono text-[10px] tracking-[0.25em] text-white/45 uppercase">{label}</div>
+        <div className="font-mono text-[10px] tracking-[0.25em] text-white/70 uppercase">{label}</div>
         <div className="text-white text-[15px] font-medium truncate">{value}</div>
       </div>
     </Comp>
@@ -39,7 +39,9 @@ export function Contact() {
     (["name", "phone", "service", "message"] as const).forEach((k) => { if (!form[k].trim()) errs[k] = true; });
     setErrors(errs);
     if (Object.keys(errs).length) { push({ msg: "Please fill in all fields ⚠️", type: "warning" }); return; }
-    push({ msg: "Message sent! We'll call you soon ✓", type: "success" });
+    const text = `Hi Students World!%0A%0A*Name:* ${form.name}%0A*Phone:* ${form.phone}%0A*Service:* ${form.service}%0A*Message:* ${form.message}`;
+    window.open(`https://wa.me/${BRAND.whatsapp}?text=${text}`, "_blank", "noopener,noreferrer");
+    push({ msg: "Opening WhatsApp… ✓", type: "success" });
     setForm({ name: "", phone: "", service: "", message: "" });
   };
 
@@ -91,7 +93,7 @@ export function Contact() {
                   placeholder={f.label}
                   value={form[f.k as keyof typeof form]}
                   onChange={(e) => setForm({ ...form, [f.k]: e.target.value })}
-                  className={`w-full bg-white/[0.04] rounded-xl px-4 py-3.5 text-white placeholder:text-white/40 outline-none border transition-all focus:border-[#00F0FF] focus:shadow-[0_0_0_3px_rgba(0,240,255,0.1)] ${errors[f.k] ? "border-red-500/60 animate-pulse" : "border-white/10"}`}
+                  className={`w-full bg-white/[0.04] rounded-xl px-4 py-3.5 text-white placeholder:text-white/60 outline-none border transition-all focus:border-[#00F0FF] focus:shadow-[0_0_0_3px_rgba(0,240,255,0.1)] ${errors[f.k] ? "border-red-500/60 animate-pulse" : "border-white/10"}`}
                 />
               ))}
               <textarea
@@ -99,9 +101,9 @@ export function Contact() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 rows={5}
-                className={`w-full bg-white/[0.04] rounded-xl px-4 py-3.5 text-white placeholder:text-white/40 outline-none border transition-all focus:border-[#00F0FF] focus:shadow-[0_0_0_3px_rgba(0,240,255,0.1)] resize-none ${errors.message ? "border-red-500/60 animate-pulse" : "border-white/10"}`}
+                className={`w-full bg-white/[0.04] rounded-xl px-4 py-3.5 text-white placeholder:text-white/60 outline-none border transition-all focus:border-[#00F0FF] focus:shadow-[0_0_0_3px_rgba(0,240,255,0.1)] resize-none ${errors.message ? "border-red-500/60 animate-pulse" : "border-white/10"}`}
               />
-              <button type="submit" className="btn-primary w-full">Send Message ✦</button>
+              <button type="submit" className="btn-primary w-full">💬 Send via WhatsApp →</button>
             </div>
           </form>
         </div>

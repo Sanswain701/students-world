@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BRAND, FLIP_SERVICES } from "@/lib/sw-data";
+import { BRAND, FLIP_SERVICES, waLink, WA_MESSAGES } from "@/lib/sw-data";
 import { ParticleCanvas } from "./ParticleCanvas";
 
 export function Hero() {
@@ -105,18 +105,24 @@ export function Hero() {
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.25, duration: 0.5 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }} className="btn-primary">
-            ✦ Apply Now →
+          <a
+            href={waLink(WA_MESSAGES.apply)}
+            target="_blank"
+            rel="noopener noreferrer"
+           
+            className="btn-primary"
+          >
+            💬 WhatsApp Us →
           </a>
           <a href={`tel:${BRAND.phoneRaw}`} className="btn-ghost">📞 Call Now</a>
-          <a href={BRAND.mapsUrl} target="_blank" rel="noreferrer" className="btn-ghost">📍 Find Us</a>
+          <a href={BRAND.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">📍 Find Us</a>
         </motion.div>
       </div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10" style={{ animation: "bar-bounce 2s ease-in-out infinite" }}>
         <div className="h-10 w-px bg-gradient-to-b from-transparent via-[#00F0FF] to-transparent" />
-        <span className="font-mono text-[10px] tracking-[0.3em] text-white/40">SCROLL</span>
+        <span className="font-mono text-[10px] tracking-[0.3em] text-white/70">SCROLL</span>
       </div>
     </section>
   );
