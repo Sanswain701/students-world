@@ -72,25 +72,42 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Students World",
+  description: "Government and digital services center in Konark, Odisha",
+  telephone: "+919777969564",
+  email: "studentsworld44@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Near Madhipur Chhaka",
+    addressLocality: "Konark",
+    addressRegion: "Odisha",
+    addressCountry: "IN",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 19.8926667, longitude: 86.0878783 },
+  openingHours: "Mo-Sa 09:00-19:00, Su 10:00-16:00",
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "theme-color", content: "#000000" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
       },
+    ],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(JSON_LD) },
     ],
   }),
   shellComponent: RootShell,
