@@ -88,7 +88,7 @@ export function Navbar() {
               href={waLink(WA_MESSAGES.general)}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Message Students World on WhatsApp"
+             
               className="btn-primary mt-4"
             >
               💬 WhatsApp Us →

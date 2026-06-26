@@ -109,13 +109,13 @@ export function Hero() {
             href={waLink(WA_MESSAGES.apply)}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Chat with Students World on WhatsApp"
+           
             className="btn-primary"
           >
             💬 WhatsApp Us →
           </a>
-          <a href={`tel:${BRAND.phoneRaw}`} aria-label="Call Students World" className="btn-ghost">📞 Call Now</a>
-          <a href={BRAND.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Students World on Google Maps" className="btn-ghost">📍 Find Us</a>
+          <a href={`tel:${BRAND.phoneRaw}`} className="btn-ghost">📞 Call Now</a>
+          <a href={BRAND.mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost">📍 Find Us</a>
         </motion.div>
       </div>
 
