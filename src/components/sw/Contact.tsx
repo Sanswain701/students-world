@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BRAND, waLink } from "@/lib/sw-data";
+import { BRAND } from "@/lib/sw-data";
 import { useToast } from "./Toast";
 
 function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: string; value: string; onClick?: () => void; href?: string }) {
