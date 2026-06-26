@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BRAND } from "@/lib/sw-data";
+import { BRAND, waLink } from "@/lib/sw-data";
 import { useToast } from "./Toast";
 
 function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: string; value: string; onClick?: () => void; href?: string }) {
@@ -39,7 +39,9 @@ export function Contact() {
     (["name", "phone", "service", "message"] as const).forEach((k) => { if (!form[k].trim()) errs[k] = true; });
     setErrors(errs);
     if (Object.keys(errs).length) { push({ msg: "Please fill in all fields ⚠️", type: "warning" }); return; }
-    push({ msg: "Message sent! We'll call you soon ✓", type: "success" });
+    const text = `Hi Students World!%0A%0A*Name:* ${form.name}%0A*Phone:* ${form.phone}%0A*Service:* ${form.service}%0A*Message:* ${form.message}`;
+    window.open(`https://wa.me/${BRAND.whatsapp}?text=${text}`, "_blank", "noopener,noreferrer");
+    push({ msg: "Opening WhatsApp… ✓", type: "success" });
     setForm({ name: "", phone: "", service: "", message: "" });
   };
 
