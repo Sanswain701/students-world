@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { SERVICES, waLink } from "@/lib/sw-data";
 
 function Card({ icon, title, desc, wa, i }: { icon: string; title: string; desc: string; wa: string; i: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const rx = useSpring(useTransform(my, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 18 });
