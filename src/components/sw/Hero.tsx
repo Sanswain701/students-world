@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BRAND, FLIP_SERVICES } from "@/lib/sw-data";
+import { BRAND, FLIP_SERVICES, waLink, WA_MESSAGES } from "@/lib/sw-data";
 import { ParticleCanvas } from "./ParticleCanvas";
 
 export function Hero() {
@@ -105,11 +105,17 @@ export function Hero() {
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.25, duration: 0.5 }}
           className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <a href="#contact" onClick={(e) => { e.preventDefault(); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }} className="btn-primary">
-            ✦ Apply Now →
+          <a
+            href={waLink(WA_MESSAGES.apply)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat with Students World on WhatsApp"
+            className="btn-primary"
+          >
+            💬 WhatsApp Us →
           </a>
-          <a href={`tel:${BRAND.phoneRaw}`} className="btn-ghost">📞 Call Now</a>
-          <a href={BRAND.mapsUrl} target="_blank" rel="noreferrer" className="btn-ghost">📍 Find Us</a>
+          <a href={`tel:${BRAND.phoneRaw}`} aria-label="Call Students World" className="btn-ghost">📞 Call Now</a>
+          <a href={BRAND.mapsUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Students World on Google Maps" className="btn-ghost">📍 Find Us</a>
         </motion.div>
       </div>
 

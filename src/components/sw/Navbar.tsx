@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { NAV, BRAND } from "@/lib/sw-data";
+import { NAV, BRAND, waLink, WA_MESSAGES } from "@/lib/sw-data";
 
 export function Navbar() {
   const [visible, setVisible] = useState(true);
