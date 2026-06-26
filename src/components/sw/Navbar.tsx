@@ -84,7 +84,15 @@ export function Navbar() {
                 {item.label}
               </button>
             ))}
-            <a href={`tel:${BRAND.phoneRaw}`} className="btn-primary mt-4">Contact Us →</a>
+            <a
+              href={waLink(WA_MESSAGES.general)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Message Students World on WhatsApp"
+              className="btn-primary mt-4"
+            >
+              💬 WhatsApp Us →
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
