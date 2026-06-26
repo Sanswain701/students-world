@@ -49,8 +49,8 @@ export function IconWheel() {
             {WHEEL_ICONS.map((ic, i) => {
               const angle = (i / WHEEL_ICONS.length) * Math.PI * 2 - Math.PI / 2;
               const r = 42; // percent
-              const x = 50 + Math.cos(angle) * r;
-              const y = 50 + Math.sin(angle) * r;
+              const x = (50 + Math.cos(angle) * r).toFixed(4);
+              const y = (50 + Math.sin(angle) * r).toFixed(4);
               return (
                 <div
                   key={i}
@@ -60,6 +60,7 @@ export function IconWheel() {
                     animation: "counter-spin 26s linear infinite",
                     transformOrigin: "center",
                   }}
+                  aria-hidden="true"
                 >
                   {ic}
                 </div>
