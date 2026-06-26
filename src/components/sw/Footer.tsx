@@ -29,13 +29,13 @@ export function Footer() {
 
         <div className="grid grid-cols-2 gap-6">
           <div>
-            <div className="font-mono text-[10px] tracking-[0.25em] text-white/40 uppercase mb-3">Services</div>
+            <div className="font-mono text-[10px] tracking-[0.25em] text-white/70 uppercase mb-3">Services</div>
             <ul className="space-y-2 text-white/65 text-sm">
               {services.map((s) => <li key={s} className="hover:text-white transition cursor-pointer">{s}</li>)}
             </ul>
           </div>
           <div>
-            <div className="font-mono text-[10px] tracking-[0.25em] text-white/40 uppercase mb-3">Navigate</div>
+            <div className="font-mono text-[10px] tracking-[0.25em] text-white/70 uppercase mb-3">Navigate</div>
             <ul className="space-y-2 text-white/65 text-sm">
               {NAV.map((n) => (
                 <li key={n.id}>
@@ -47,17 +47,17 @@ export function Footer() {
         </div>
 
         <div>
-          <div className="font-mono text-[10px] tracking-[0.25em] text-white/40 uppercase mb-3">Opening Hours</div>
+          <div className="font-mono text-[10px] tracking-[0.25em] text-white/70 uppercase mb-3">Opening Hours</div>
           <ul className="space-y-1.5 text-white/65 text-sm">
-            <li><span className="text-white/45">Mon–Sat</span> · 9:00 AM – 7:00 PM</li>
-            <li><span className="text-white/45">Sunday</span> · 10:00 AM – 4:00 PM</li>
+            <li><span className="text-white/70">Mon–Sat</span> · 9:00 AM – 7:00 PM</li>
+            <li><span className="text-white/70">Sunday</span> · 10:00 AM – 4:00 PM</li>
           </ul>
           <div className="mt-5 text-white/55 text-sm leading-relaxed">{BRAND.address}</div>
         </div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-white/40 text-xs font-mono tracking-wider">© 2025 STUDENTS WORLD, KONARK · ALL RIGHTS RESERVED</p>
+        <p className="text-white/70 text-xs font-mono tracking-wider">© 2025 STUDENTS WORLD, KONARK · ALL RIGHTS RESERVED</p>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="w-11 h-11 rounded-full glass flex items-center justify-center text-[#00F0FF] hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] transition-all"

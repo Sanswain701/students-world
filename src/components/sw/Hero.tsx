@@ -122,7 +122,7 @@ export function Hero() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10" style={{ animation: "bar-bounce 2s ease-in-out infinite" }}>
         <div className="h-10 w-px bg-gradient-to-b from-transparent via-[#00F0FF] to-transparent" />
-        <span className="font-mono text-[10px] tracking-[0.3em] text-white/40">SCROLL</span>
+        <span className="font-mono text-[10px] tracking-[0.3em] text-white/70">SCROLL</span>
       </div>
     </section>
   );
