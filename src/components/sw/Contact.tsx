@@ -46,7 +46,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-6">
+    <section id="contact" className="relative py-20 md:py-28 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
           <div className="eyebrow mb-5"><span className="live-dot" />Contact</div>
@@ -55,29 +55,30 @@ export function Contact() {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
           {/* Left */}
-          <div className="space-y-4">
+          <div className="space-y-4 min-w-0">
             <InfoCard icon="📧" label="Email" value={BRAND.email} onClick={() => copy(BRAND.email, "Email")} />
             <InfoCard icon="📞" label="Phone" value={BRAND.phone} onClick={() => copy(BRAND.phone, "Phone")} />
             <InfoCard icon="📍" label="Address" value={BRAND.address} href={BRAND.mapsUrl} />
 
-            <div className="relative glass rounded-2xl overflow-hidden mt-4" style={{ height: 280 }}>
+            <div className="relative glass rounded-2xl overflow-hidden mt-4 w-full" style={{ height: 280 }}>
               <iframe
                 title="Students World location"
                 src={`https://www.google.com/maps?q=${BRAND.coords.lat},${BRAND.coords.lng}&z=15&output=embed`}
-                width="100%" height="100%" loading="lazy"
-                style={{ border: 0, filter: "hue-rotate(180deg) invert(0.92) brightness(0.85) contrast(1.1) saturate(1.2)" }}
+                loading="lazy"
+                className="block w-full h-full border-0"
+                style={{ filter: "hue-rotate(180deg) invert(0.92) brightness(0.85) contrast(1.1) saturate(1.2)" }}
               />
               <a href={BRAND.mapsUrl} target="_blank" rel="noreferrer"
-                className="absolute bottom-4 right-4 btn-primary !py-2 !px-4 text-sm">
-                📍 Open in Google Maps
+                className="absolute bottom-3 right-3 btn-primary !py-2 !px-3 text-xs sm:text-sm sm:!px-4 max-w-[calc(100%-1.5rem)] truncate">
+                📍 Open in Maps
               </a>
             </div>
           </div>
 
           {/* Right — form */}
-          <form onSubmit={submit} className="glass rounded-3xl p-7 md:p-9">
+          <form onSubmit={submit} className="glass rounded-3xl p-5 sm:p-7 md:p-9 min-w-0 w-full">
             <h3 className="font-display text-2xl md:text-3xl font-semibold text-white tracking-tight">Send us a message</h3>
             <p className="text-white/55 text-sm mt-1.5">We'll get back to you within a few hours.</p>
 
