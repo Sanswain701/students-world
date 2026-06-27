@@ -29,7 +29,7 @@ function Counter({ to, suffix, delay }: { to: number; suffix: string; delay: num
     return () => io.disconnect();
   }, [to, delay]);
 
-  return <div ref={ref} className="font-display font-bold text-4xl md:text-5xl text-gradient-blue tabular-nums">{v.toLocaleString()}{suffix}</div>;
+  return <div ref={ref} className="font-display font-bold text-gradient-blue tabular-nums leading-none break-words" style={{ fontSize: "clamp(26px, 7vw, 48px)" }}>{v.toLocaleString()}{suffix}</div>;
 }
 
 export function Stats() {
