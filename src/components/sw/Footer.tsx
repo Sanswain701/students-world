@@ -64,6 +64,42 @@ export function Footer() {
           aria-label="Back to top"
         >↑</button>
       </div>
+
+      <div className="max-w-6xl mx-auto px-6 mt-8 flex flex-col items-center justify-center">
+        <a
+          href="https://instagram.com/sanfrfr._"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-sans font-semibold text-sm tracking-tight text-white/90 transition-colors hover:text-white"
+        >
+          <span
+            className="pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ background: "linear-gradient(135deg, rgba(26,109,255,0.18), rgba(0,240,255,0.12), rgba(123,97,255,0.18))" }}
+          />
+          <span className="pointer-events-none absolute inset-0 rounded-full border border-white/10 group-hover:border-[#00F0FF]/40 transition-colors duration-300" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="relative z-10 text-[#00F0FF] transition-transform duration-300 group-hover:scale-110"
+            aria-hidden="true"
+          >
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+          <span className="relative z-10">
+            <span className="text-white/60 group-hover:text-white/90 transition-colors duration-300">✨ Designed & Developed by </span>
+            <span className="bg-gradient-to-r from-[#1A6DFF] via-[#00F0FF] to-[#7B61FF] bg-clip-text text-transparent underline decoration-transparent underline-offset-4 transition-all duration-300 group-hover:decoration-[#00F0FF]/60 group-hover:underline-offset-4">@sanfrfr._</span>
+          </span>
+        </a>
+      </div>
     </footer>
   );
 }
