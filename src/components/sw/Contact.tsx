@@ -46,7 +46,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-28 px-6">
+    <section id="contact" className="relative py-20 md:py-28 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-14">
           <div className="eyebrow mb-5"><span className="live-dot" />Contact</div>
