@@ -86,7 +86,7 @@ const JSON_LD = {
     addressRegion: "Odisha",
     addressCountry: "IN",
   },
-  geo: { "@type": "GeoCoordinates", latitude: 19.8926667, longitude: 86.0878783 },
+  geo: { "@type": "GeoCoordinates", latitude: 19.8924999, longitude: 86.0878677 },
   openingHours: "Mo-Sa 09:00-19:00, Su 10:00-16:00",
 };
 
