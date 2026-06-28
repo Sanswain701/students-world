@@ -23,7 +23,7 @@ export const Route = createFileRoute("/")({
       { name: "keywords", content: "cyber cafe Konark, Aadhaar card Konark, PAN card Konark, government certificates Odisha, Students World Konark" },
       { name: "geo.region", content: "IN-OR" },
       { name: "geo.placename", content: "Konark, Odisha" },
-      { name: "geo.position", content: "19.8926667;86.0878783" },
+      { name: "geo.position", content: "19.8924999;86.0878677" },
       { property: "og:title", content: "Students World — Your Digital Service Partner" },
       { property: "og:description", content: "Fast, secure, government-approved digital services in Konark, Odisha." },
       { property: "og:type", content: "website" },
