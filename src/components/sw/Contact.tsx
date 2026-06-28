@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "@/lib/sw-data";
 import { useToast } from "./Toast";
-import buildingAsset from "@/assets/sw-building.jpg.asset.json";
+import buildingImage from "@/assets/students-world-building.jpg";
 
 function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: string; value: string; onClick?: () => void; href?: string }) {
   const Comp = (href ? "a" : "button") as "a";
