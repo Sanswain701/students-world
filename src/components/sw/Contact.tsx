@@ -1,13 +1,16 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "@/lib/sw-data";
 import { useToast } from "./Toast";
+import buildingAsset from "@/assets/sw-building.jpg.asset.json";
 
 function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: string; value: string; onClick?: () => void; href?: string }) {
   const Comp = (href ? "a" : "button") as "a";
   return (
     <Comp
       href={href}
+      target={href ? "_blank" : undefined}
+      rel={href ? "noopener noreferrer" : undefined}
       onClick={onClick}
       className="glass w-full rounded-2xl p-5 flex items-center gap-4 text-left hover:translate-x-1 hover:border-[rgba(0,240,255,0.3)] hover:shadow-[0_0_24px_rgba(0,240,255,0.15)] transition-all"
     >
@@ -27,6 +30,16 @@ export function Contact() {
   const { push } = useToast();
   const [form, setForm] = useState({ name: "", phone: "", service: "", message: "" });
   const [errors, setErrors] = useState<Record<string, boolean>>({});
+  const [lightbox, setLightbox] = useState(false);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [lightbox]);
 
   const copy = async (text: string, label: string) => {
     try { await navigator.clipboard.writeText(text); push({ msg: `${label} copied! ✓`, type: "success" }); }
@@ -62,19 +75,54 @@ export function Contact() {
             <InfoCard icon="📞" label="Phone" value={BRAND.phone} onClick={() => copy(BRAND.phone, "Phone")} />
             <InfoCard icon="📍" label="Address" value={BRAND.address} href={BRAND.mapsUrl} />
 
-            <div className="relative glass rounded-2xl overflow-hidden mt-4 w-full" style={{ height: 280 }}>
-              <iframe
-                title="Students World location"
-                src={`https://www.google.com/maps?q=${BRAND.coords.lat},${BRAND.coords.lng}&z=15&output=embed`}
+            {/* Building photo — click to open lightbox */}
+            <button
+              type="button"
+              onClick={() => setLightbox(true)}
+              aria-label="View larger photo of Students World building"
+              className="group relative block w-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_10px_40px_-12px_rgba(0,240,255,0.25)] transition-all duration-300 hover:border-[rgba(0,240,255,0.35)] hover:shadow-[0_18px_60px_-10px_rgba(0,240,255,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
+              style={{ aspectRatio: "16 / 10" }}
+            >
+              <img
+                src={buildingAsset.url}
+                alt="Students World service center — building exterior near Madhipur Chhaka, Konark"
                 loading="lazy"
-                className="block w-full h-full border-0"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" aria-hidden="true" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <div className="font-mono text-[10px] tracking-[0.25em] text-white/70 uppercase">Our Center</div>
+                  <div className="text-white text-sm font-medium truncate">Students World, Konark</div>
+                </div>
+                <span className="shrink-0 rounded-full bg-white/10 backdrop-blur px-2.5 py-1 text-[11px] text-white/90 border border-white/15">Tap to expand</span>
+              </div>
+            </button>
+
+            {/* Map */}
+            <a
+              href={BRAND.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Students World location in Google Maps"
+              className="relative glass rounded-2xl overflow-hidden mt-4 w-full block group transition-all duration-300 hover:border-[rgba(0,240,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.2)]"
+              style={{ height: 280 }}
+            >
+              <iframe
+                title="Students World location on Google Maps"
+                src={`https://www.google.com/maps?q=${BRAND.coords.lat},${BRAND.coords.lng}&z=17&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="block w-full h-full border-0 pointer-events-none"
                 style={{ filter: "hue-rotate(180deg) invert(0.92) brightness(0.85) contrast(1.1) saturate(1.2)" }}
               />
-              <a href={BRAND.mapsUrl} target="_blank" rel="noreferrer"
-                className="absolute bottom-3 right-3 btn-primary !py-2 !px-3 text-xs sm:text-sm sm:!px-4 max-w-[calc(100%-1.5rem)] truncate">
+              <span
+                className="absolute bottom-3 right-3 btn-primary !py-2 !px-3 text-xs sm:text-sm sm:!px-4 max-w-[calc(100%-1.5rem)] truncate"
+              >
                 📍 Open in Maps
-              </a>
-            </div>
+              </span>
+            </a>
           </div>
 
           {/* Right — form */}
@@ -109,6 +157,42 @@ export function Contact() {
           </form>
         </div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            role="dialog" aria-modal="true" aria-label="Students World building photo"
+            onClick={() => setLightbox(false)}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-xl"
+          >
+            <motion.div
+              initial={{ scale: 0.94, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.96, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-5xl w-full max-h-[88vh] overflow-auto rounded-2xl border border-white/10 shadow-[0_30px_120px_-20px_rgba(0,240,255,0.35)]"
+              style={{ touchAction: "pinch-zoom" }}
+            >
+              <img
+                src={buildingAsset.url}
+                alt="Students World service center — building exterior, Konark"
+                className="block w-full h-auto select-none"
+                draggable={false}
+              />
+            </motion.div>
+            <button
+              type="button"
+              onClick={() => setLightbox(false)}
+              aria-label="Close photo preview"
+              className="absolute top-4 right-4 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-lg flex items-center justify-center backdrop-blur transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00F0FF]"
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
