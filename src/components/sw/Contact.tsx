@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "@/lib/sw-data";
 import { useToast } from "./Toast";
-import buildingAsset from "@/assets/sw-building.jpg.asset.json";
+import buildingImage from "@/assets/students-world-building.jpg";
 
 function InfoCard({ icon, label, value, onClick, href }: { icon: string; label: string; value: string; onClick?: () => void; href?: string }) {
   const Comp = (href ? "a" : "button") as "a";
@@ -84,7 +84,7 @@ export function Contact() {
               style={{ aspectRatio: "16 / 10" }}
             >
               <img
-                src={buildingAsset.url}
+                src={buildingImage}
                 alt="Students World service center — building exterior near Madhipur Chhaka, Konark"
                 loading="lazy"
                 decoding="async"
@@ -176,7 +176,7 @@ export function Contact() {
               style={{ touchAction: "pinch-zoom" }}
             >
               <img
-                src={buildingAsset.url}
+                src={buildingImage}
                 alt="Students World service center — building exterior, Konark"
                 className="block w-full h-auto select-none"
                 draggable={false}
