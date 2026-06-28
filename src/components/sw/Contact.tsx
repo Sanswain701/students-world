@@ -84,7 +84,7 @@ export function Contact() {
               style={{ aspectRatio: "16 / 10" }}
             >
               <img
-                src={buildingAsset.url}
+                src={buildingImage}
                 alt="Students World service center — building exterior near Madhipur Chhaka, Konark"
                 loading="lazy"
                 decoding="async"
@@ -176,7 +176,7 @@ export function Contact() {
               style={{ touchAction: "pinch-zoom" }}
             >
               <img
-                src={buildingAsset.url}
+                src={buildingImage}
                 alt="Students World service center — building exterior, Konark"
                 className="block w-full h-auto select-none"
                 draggable={false}
