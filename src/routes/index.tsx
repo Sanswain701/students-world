@@ -14,6 +14,8 @@ import { Footer } from "@/components/sw/Footer";
 import { FloatingButtons } from "@/components/sw/FloatingButtons";
 import { ScrollProgress } from "@/components/sw/ScrollProgress";
 import { ToastProvider } from "@/components/sw/Toast";
+import { SmoothScroll } from "@/components/sw/SmoothScroll";
+import { WelcomeNotice } from "@/components/sw/WelcomeNotice";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +37,7 @@ export const Route = createFileRoute("/")({
 function Page() {
   return (
     <ToastProvider>
+      <SmoothScroll />
       <LoadingScreen />
       <ScrollProgress />
       <Navbar />
@@ -51,6 +54,7 @@ function Page() {
       </main>
       <Footer />
       <FloatingButtons />
+      <WelcomeNotice />
     </ToastProvider>
   );
 }

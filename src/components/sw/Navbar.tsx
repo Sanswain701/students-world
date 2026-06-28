@@ -64,10 +64,24 @@ export function Navbar() {
         </a>
         <button
           aria-label="Menu"
+          aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden ml-auto w-9 h-9 rounded-full glass flex items-center justify-center text-white"
+          className="md:hidden ml-auto w-9 h-9 rounded-full glass flex items-center justify-center text-white active:scale-90 transition-transform"
         >
-          {open ? "✕" : "☰"}
+          <span className="relative block w-4 h-4">
+            <span
+              className="absolute left-0 right-0 h-[1.5px] bg-white rounded-full transition-all duration-300"
+              style={{ top: open ? "50%" : "25%", transform: open ? "translateY(-50%) rotate(45deg)" : "none" }}
+            />
+            <span
+              className="absolute left-0 right-0 h-[1.5px] bg-white rounded-full top-1/2 -translate-y-1/2 transition-opacity duration-200"
+              style={{ opacity: open ? 0 : 1 }}
+            />
+            <span
+              className="absolute left-0 right-0 h-[1.5px] bg-white rounded-full transition-all duration-300"
+              style={{ top: open ? "50%" : "75%", transform: open ? "translateY(-50%) rotate(-45deg)" : "none" }}
+            />
+          </span>
         </button>
       </motion.nav>
 
