@@ -7,8 +7,8 @@ export const BRAND = {
   phoneRaw: "+919777969564",
   whatsapp: "919777969564",
   address: "Near Madhipur Chhaka, Konark, Odisha, India",
-  coords: { lat: 19.8926667, lng: 86.0878783 },
-  mapsUrl: "https://maps.google.com/?q=19.8926667,86.0878783",
+  coords: { lat: 19.8924999, lng: 86.0878677 },
+  mapsUrl: "https://maps.app.goo.gl/b76we2Q2NeL7gaEh6?g_st=ac",
 };
 
 /** Build a WhatsApp deep link with a pre-filled message for a service. */
