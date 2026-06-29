@@ -1,100 +1,146 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Laptop, X } from "lucide-react";
 
-const KEY = "sw_welcome_dismissed_v1";
+const SESSION_KEY = "sw_announce_closed_session_v1";
+const REAPPEAR_MS = 45000;
+const AUTO_HIDE_MS = 6000;
+const INITIAL_DELAY_MS = 800;
 
 export function WelcomeNotice() {
   const [open, setOpen] = useState(false);
+  const [closedForSession, setClosedForSession] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     try {
-      if (localStorage.getItem(KEY)) return;
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        setClosedForSession(true);
+        return;
+      }
     } catch {
       /* ignore */
     }
-    const t = setTimeout(() => setOpen(true), 1400);
+    const t = setTimeout(() => setOpen(true), INITIAL_DELAY_MS);
     return () => clearTimeout(t);
   }, []);
 
+  // Auto-hide after AUTO_HIDE_MS, then re-show after REAPPEAR_MS — until user closes.
   useEffect(() => {
-    if (!open) return;
-    const t = setTimeout(() => dismiss(), 8000);
+    if (closedForSession) return;
+    if (!open) {
+      const t = setTimeout(() => setOpen(true), REAPPEAR_MS);
+      return () => clearTimeout(t);
+    }
+    const t = setTimeout(() => setOpen(false), AUTO_HIDE_MS);
     return () => clearTimeout(t);
-  }, [open]);
+  }, [open, closedForSession]);
 
-  const dismiss = () => {
+  const close = () => {
     setOpen(false);
+    setClosedForSession(true);
     try {
-      localStorage.setItem(KEY, "1");
+      sessionStorage.setItem(SESSION_KEY, "1");
     } catch {
       /* ignore */
     }
   };
 
   const explore = () => {
-    dismiss();
-    document.getElementById("services")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    close();
+    document
+      .getElementById("services")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <AnimatePresence>
-      {open && (
+      {open && !closedForSession && (
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.96, filter: "blur(8px)" }}
+          initial={{ opacity: 0, y: -50, scale: 0.97, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: 30, scale: 0.96, filter: "blur(6px)" }}
-          transition={{ type: "spring", stiffness: 220, damping: 24 }}
+          exit={{ opacity: 0, y: -40, scale: 0.95, filter: "blur(6px)" }}
+          transition={{ type: "spring", stiffness: 220, damping: 22, mass: 0.8 }}
           role="dialog"
-          aria-label="Welcome to Students World"
-          className="fixed z-[9997] left-1/2 -translate-x-1/2 bottom-6 sm:bottom-8 w-[min(94vw,420px)] glass-strong rounded-2xl p-4 sm:p-5"
-          style={{
-            boxShadow:
-              "0 20px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(0,240,255,0.12), 0 0 40px rgba(26,109,255,0.18)",
-          }}
+          aria-label="Best experience announcement"
+          className="fixed left-1/2 -translate-x-1/2 z-[9997] w-[min(94vw,620px)]
+                     top-[calc(env(safe-area-inset-top,0px)+88px)]
+                     md:top-[calc(env(safe-area-inset-top,0px)+96px)]"
         >
-          <div className="flex items-start gap-3">
-            <div
-              className="shrink-0 w-10 h-10 rounded-xl flex items-center justify-center text-lg"
+          <motion.div
+            whileHover={{ scale: 1.005 }}
+            whileTap={{ scale: 0.995 }}
+            className="relative rounded-[28px] p-4 sm:p-5"
+            style={{
+              background: "rgba(10,15,25,0.72)",
+              backdropFilter: "blur(24px) saturate(160%)",
+              border: "1px solid rgba(0,255,255,0.15)",
+              boxShadow:
+                "0 25px 70px rgba(0,170,255,0.25), inset 0 1px 0 rgba(255,255,255,0.05)",
+            }}
+          >
+            <div className="flex items-start gap-3 sm:gap-4 pr-8">
+              <motion.div
+                initial={{ rotate: -8, scale: 0.9 }}
+                animate={{ rotate: 0, scale: 1 }}
+                transition={{ delay: 0.15, type: "spring", stiffness: 220, damping: 14 }}
+                whileHover={{ scale: 1.08, rotate: 4 }}
+                className="shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%)",
+                  boxShadow:
+                    "0 8px 24px rgba(0,170,255,0.35), 0 0 0 1px rgba(0,240,255,0.25), inset 0 -2px 6px rgba(0,109,255,0.1)",
+                }}
+                aria-hidden="true"
+              >
+                <Laptop size={20} strokeWidth={2.2} className="text-[#0A1018]" />
+              </motion.div>
+
+              <div className="min-w-0 flex-1">
+                <h3 className="font-display font-semibold text-white text-[14px] sm:text-[15px] leading-tight">
+                  For the Best Experience, Visit from a Desktop or Laptop!
+                </h3>
+                <p className="mt-1.5 text-[12px] sm:text-[13px] text-white/70 leading-snug">
+                  Students World is fully functional on mobile, but advanced animations
+                  and visual effects shine on larger screens.
+                </p>
+
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={close}
+                    className="btn-primary !py-2 !px-4 text-xs min-h-[40px]"
+                    aria-label="Continue on Mobile"
+                  >
+                    Continue on Mobile →
+                  </button>
+                  <button
+                    onClick={explore}
+                    className="btn-ghost !py-2 !px-4 text-xs min-h-[40px]"
+                    aria-label="Explore Features"
+                  >
+                    Explore Features
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <motion.button
+              onClick={close}
+              aria-label="Close announcement"
+              whileHover={{ rotate: 90, scale: 1.08 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white/70 hover:text-white"
               style={{
-                background:
-                  "linear-gradient(135deg, rgba(26,109,255,0.35), rgba(0,240,255,0.18))",
-                border: "1px solid rgba(0,240,255,0.25)",
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                backdropFilter: "blur(8px)",
               }}
-              aria-hidden="true"
             >
-              👋
-            </div>
-            <div className="min-w-0 flex-1">
-              <div className="font-display font-semibold text-white text-[15px] leading-tight">
-                Welcome to Students World
-              </div>
-              <p className="mt-1 text-[13px] text-white/70 leading-snug">
-                Your Digital Service Center in Konark. Explore our services with a premium experience.
-              </p>
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  onClick={explore}
-                  className="btn-primary !py-2 !px-4 text-xs"
-                >
-                  Explore →
-                </button>
-                <button
-                  onClick={dismiss}
-                  className="text-xs text-white/60 hover:text-white px-3 py-2 rounded-full transition-colors"
-                >
-                  Dismiss
-                </button>
-              </div>
-            </div>
-            <button
-              onClick={dismiss}
-              aria-label="Close welcome notice"
-              className="shrink-0 -mt-1 -mr-1 w-7 h-7 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:bg-white/10 transition-colors"
-            >
-              ✕
-            </button>
-          </div>
+              <X size={14} strokeWidth={2.4} />
+            </motion.button>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
