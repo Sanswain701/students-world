@@ -102,7 +102,7 @@ export function Contact() {
 
             {/* Map */}
             <a
-            href={`https://www.google.com/maps?q=${BRAND.coords.lat},${BRAND.coords.lng}&z=17`}
+              href="https://maps.app.goo.gl/b76we2Q2NeL7gaEh6?g_st=ac"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Students World location in Google Maps"
