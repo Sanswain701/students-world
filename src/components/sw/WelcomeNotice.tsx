@@ -67,7 +67,7 @@ export function WelcomeNotice() {
           >
           <div
             className="relative flex items-center gap-3 sm:gap-4
-                       h-[70px] sm:h-[76px] md:h-[84px]
+                       h-[70px] sm:h-[76px]
                        pl-3 pr-3 sm:pl-4 sm:pr-4
                        rounded-full"
             style={{
