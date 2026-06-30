@@ -118,7 +118,7 @@ export function Contact() {
                 style={{ filter: "hue-rotate(180deg) invert(0.92) brightness(0.85) contrast(1.1) saturate(1.2)" }}
               />
               <span
-                className="absolute bottom-8 right-3 z-10 btn-primary !py-2 !px-3 text-xs sm:text-sm sm:!px-4 max-w-[calc(100%-1.5rem)] truncate shadow-[0_8px_24px_rgba(0,240,255,0.35)]"
+                className="!absolute bottom-8 right-3 z-10 btn-primary !py-2 !px-3 text-xs sm:text-sm sm:!px-4 max-w-[calc(100%-1.5rem)] truncate shadow-[0_8px_24px_rgba(0,240,255,0.35)]"
               >
                 📍 Open in Maps
               </span>
