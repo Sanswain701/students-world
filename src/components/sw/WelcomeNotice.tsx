@@ -63,9 +63,8 @@ export function WelcomeNotice() {
           aria-live="polite"
           className="fixed left-1/2 -translate-x-1/2 z-[9997]
                      w-[92%] max-w-[700px]
-                     top-[calc(env(safe-area-inset-top,0px)+84px)]
-                     md:top-[calc(env(safe-area-inset-top,0px)+92px)]"
-        >
+                     top-[calc(env(safe-area-inset-top,0px)+84px)]"
+          >
           <div
             className="relative flex items-center gap-3 sm:gap-4
                        h-[70px] sm:h-[76px] md:h-[84px]
