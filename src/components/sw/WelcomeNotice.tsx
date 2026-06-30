@@ -80,7 +80,7 @@ export function WelcomeNotice() {
           >
             {/* Laptop icon */}
             <div
-              className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center"
+              className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center"
               style={{
                 background:
                   "linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%)",
@@ -89,17 +89,17 @@ export function WelcomeNotice() {
               }}
               aria-hidden="true"
             >
-              <Laptop
-                size={18}
-                strokeWidth={2.2}
-                className="text-[#0A1018] sm:w-5 sm:h-5 md:w-5 md:h-5"
-              />
+                <Laptop
+                  size={18}
+                  strokeWidth={2.2}
+                  className="text-[#0A1018] sm:w-5 sm:h-5"
+                />
             </div>
 
             {/* Message */}
-            <p className="flex-1 min-w-0 font-display font-semibold text-white
-                          text-[13px] sm:text-[14px] md:text-[15px]
-                          leading-snug pr-1">
+              <p className="flex-1 min-w-0 font-display font-semibold text-white
+                            text-[13px] sm:text-[14px]
+                            leading-snug pr-1">
               For the Best Experience, Visit from a Desktop or Laptop!
             </p>
 
