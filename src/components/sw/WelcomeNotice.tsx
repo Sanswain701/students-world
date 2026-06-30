@@ -63,44 +63,38 @@ export function WelcomeNotice() {
           aria-live="polite"
           className="fixed left-1/2 -translate-x-1/2 z-[9997]
                      w-[92%] max-w-[700px]
-                     top-[calc(env(safe-area-inset-top,0px)+84px)]
-                     md:top-[calc(env(safe-area-inset-top,0px)+92px)]"
+                     top-[calc(env(safe-area-inset-top,0px)+84px)]"
         >
           <div
             className="relative flex items-center gap-3 sm:gap-4
-                       h-[70px] sm:h-[76px] md:h-[84px]
+                       h-[70px] sm:h-[76px]
                        pl-3 pr-3 sm:pl-4 sm:pr-4
                        rounded-full"
             style={{
               background: "rgba(10,15,25,0.62)",
               backdropFilter: "blur(20px) saturate(150%)",
               border: "1px solid rgba(0,240,255,0.12)",
-              boxShadow:
-                "0 20px 50px rgba(0,170,255,0.18), inset 0 1px 0 rgba(255,255,255,0.04)",
+              boxShadow: "0 20px 50px rgba(0,170,255,0.18), inset 0 1px 0 rgba(255,255,255,0.04)",
             }}
           >
             {/* Laptop icon */}
             <div
-              className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center"
+              className="shrink-0 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center"
               style={{
-                background:
-                  "linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%)",
-                boxShadow:
-                  "0 6px 18px rgba(0,170,255,0.28), 0 0 0 1px rgba(0,240,255,0.2)",
+                background: "linear-gradient(135deg, #ffffff 0%, #e8f4ff 100%)",
+                boxShadow: "0 6px 18px rgba(0,170,255,0.28), 0 0 0 1px rgba(0,240,255,0.2)",
               }}
               aria-hidden="true"
             >
-              <Laptop
-                size={18}
-                strokeWidth={2.2}
-                className="text-[#0A1018] sm:w-5 sm:h-5 md:w-5 md:h-5"
-              />
+              <Laptop size={18} strokeWidth={2.2} className="text-[#0A1018] sm:w-5 sm:h-5" />
             </div>
 
             {/* Message */}
-            <p className="flex-1 min-w-0 font-display font-semibold text-white
-                          text-[13px] sm:text-[14px] md:text-[15px]
-                          leading-snug pr-1">
+            <p
+              className="flex-1 min-w-0 font-display font-semibold text-white
+                            text-[13px] sm:text-[14px]
+                            leading-snug pr-1"
+            >
               For the Best Experience, Visit from a Desktop or Laptop!
             </p>
 
