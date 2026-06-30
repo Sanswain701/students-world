@@ -29,24 +29,28 @@ export function WelcomeNotice() {
 
   // Auto-hide after AUTO_HIDE_MS, then re-show after REAPPEAR_MS — until user closes.
   useEffect(() => {
-    if (closedForSession) return;
+    if (!isMobile || closedForSession) return;
     if (!open) {
       const t = setTimeout(() => setOpen(true), REAPPEAR_MS);
       return () => clearTimeout(t);
     }
     const t = setTimeout(() => setOpen(false), AUTO_HIDE_MS);
     return () => clearTimeout(t);
-  }, [open, closedForSession]);
+  }, [isMobile, open, closedForSession]);
 
   const close = () => {
     setOpen(false);
     setClosedForSession(true);
+    if (typeof window === "undefined") return;
     try {
       sessionStorage.setItem(SESSION_KEY, "1");
     } catch {
       /* ignore */
     }
   };
+
+  // Do not render at all on tablets, laptops, or desktops.
+  if (!isMobile) return null;
 
   return (
     <AnimatePresence>
