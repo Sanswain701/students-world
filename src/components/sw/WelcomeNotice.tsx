@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Laptop, X } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const SESSION_KEY = "sw_announce_closed_session_v1";
 const REAPPEAR_MS = 45000;
@@ -8,11 +9,12 @@ const AUTO_HIDE_MS = 6000;
 const INITIAL_DELAY_MS = 800;
 
 export function WelcomeNotice() {
+  const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const [closedForSession, setClosedForSession] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!isMobile || typeof window === "undefined") return;
     try {
       if (sessionStorage.getItem(SESSION_KEY)) {
         setClosedForSession(true);
@@ -23,7 +25,7 @@ export function WelcomeNotice() {
     }
     const t = setTimeout(() => setOpen(true), INITIAL_DELAY_MS);
     return () => clearTimeout(t);
-  }, []);
+  }, [isMobile]);
 
   // Auto-hide after AUTO_HIDE_MS, then re-show after REAPPEAR_MS — until user closes.
   useEffect(() => {
